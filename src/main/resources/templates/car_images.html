@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualizar Imágenes del Carro</title>
+</head>
+<body>
+
+<h1>Imágenes del Carro</h1>
+
+<div>
+  <h3>Carro: {{car.marca}}</h3>
+  <ul>
+    <!-- Mostrar las imágenes del carro -->
+    <li th:each="imgCar : ${imgCars}">
+      <img th:src="${imgCar.urlImg}" alt="Imagen del carro" width="200"/>
+
+      <form th:action="@{/update-image/{imgCarId}(imgCarId=${imgCar.idImgCar})}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*"/>
+        <button type="submit">Actualizar Imagen</button>
+
+      </form>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

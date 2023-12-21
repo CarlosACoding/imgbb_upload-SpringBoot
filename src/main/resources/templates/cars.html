@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <title>Listado de Coches</title>
+</head>
+<body>
+<h1>Listado de Coches</h1>
+<div th:each="car : ${cars}">
+  <h2>Marca: <span th:text="${car.marca}"></span></h2>
+  <h3>Imágenes:</h3>
+  <ul>
+    <li th:each="imgCar : ${car.imgCars}">
+      <img th:src="@{imgCar.urlImg}" alt="Imagen del carro" width="100" />
+      <p>Id de la imagen: <span th:text="${imgCar.idImgCar}"></span></p>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
+

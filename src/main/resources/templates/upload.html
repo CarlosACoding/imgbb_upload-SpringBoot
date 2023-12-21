@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subir imágenes</title>
+</head>
+<body>
+<h1>Sube imágenes para un carro</h1>
+
+<form method="POST" enctype="multipart/form-data" th:action="@{/upload}">
+    <label for="marca">Marca del carro:</label>
+    <input type="text" id="marca" name="marca" required/><br/><br/>
+
+    <label for="files">Selecciona hasta 4 imágenes:</label>
+    <input type="file" id="files" name="files" multiple accept="image/*" required/><br/><br/>
+
+    <button type="submit">Subir imágenes</button>
+</form>
+
+<div th:if="${error}">
+    <p style="color:red;" th:text="${error}"></p>
+</div>
+
+<div th:if="${car}">
+    <h2>Carro subido con éxito:</h2>
+    <p>Marca: <span th:text="${car.marca}"></span></p>
+    <h3>Imágenes:</h3>
+    <ul>
+        <li th:each="imgCar : ${car.imgCars}">
+            <img th:src="${imgCar.urlImg}" alt="Imagen del carro" width="100" />
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+
